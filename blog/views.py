@@ -22,6 +22,15 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = self.object
+        if post.image:  # Check if the post has an image
+            context['image_url'] = post.image.url
+        else:
+            context['image_url'] = None  # Or a default image URL
+        return context
+
 def home(request):
     return render(request, 'index.html')
 
