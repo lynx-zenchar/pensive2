@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'blog/styles.css' %}"> <!-- Add this line -->
+
+<!-- Add Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+<body>
+
+
+<!-- The Big Header -->
+<div class="header">
+  <h2>PENSIVE: A BLOG</h2>
+</div>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+  <a href="index.html">HOME</a>
+  <a href="about.html">ABOUT ME</a>
+  <a href="categories.html">CATEGORIES</a>
+  <a href="/blog/">ARTICLES</a>
+
+  <!-- Add more links as needed -->
+</div>
+
+<!-- The main content -->
+<div class="row">
+  <div class="leftcolumn">
+        {% if latest_blogs %}
+            {% for post in latest_blogs %}
+                <div class="card">
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" style="float: right; margin-left: 20px; width: 320px; height: auto;">
+                    {% endif %}
+                    <h2><a href="/blog/{{post.id}}">{{ post.title }}</a></h2>
+                    <p class="author-date">{{ post.author_name }} - {{ post.pub_date }}</p>
+                    <p class="preview">{{ post.content|truncatewords:50 }}</p>
+                    <a href="/blog/{{post.id}}" class="read-more-btn">Read More</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No blogs written.</p>
+        {% endif %}
+
+
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>About Me</h2>
+      <img src="{% static 'blog/images/mesoph.jpg' %}" alt="Your Image Description" style="height:200px; object-fit: cover; width:100%;">
+      <p>I am currently a Junior Computer Science Major at the University of Notre Dame.
+          At ND, I currently live in Pangborn Hall but next semester I will be transferred, along with my dormmates to Graham Family Hall.
+          In real life, I currently live in Irving, Texas with my family after we immigrated from the Philippines.
+      </p>
+
+    <p> I am incredibly persistent and will stop at nothing to ensure that my goals and plans are achieved.</p>
+
+    </div>
+    
+    <div class="card">
+      <h3>Follow Me</h3>
+      <a href="https://www.facebook.com/Lynx.Zenchar/" target="_blank" class="icon-link"><i class="bi bi-facebook icon"></i></a>
+      <a href="https://www.instagram.com/matthewjacob_eleazar/" target="_blank" class="icon-link"><i class="bi bi-instagram icon"></i></a>
+      <a href="https://github.com/lynx-zenchar" target="_blank" class="icon-link"><i class="bi bi-github icon"></i></a>
+      <a href="https://www.youtube.com/channel/UCfRc_9eUo6rzVhbDmV_bplg" target="_blank" class="icon-link"> <i class="bi bi-youtube"></i></a>
+
+      <h3> Check out my original music!</h3>
+      <a href="https://open.spotify.com/artist/1p0EnUpdnSR5wJUPIdtVKl" target="_blank" class="icon-link"> <i class="bi bi-spotify"></i></a>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- Add Bootstrap JavaScript and its dependencies -->
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Include  JavaScript file -->
+<script src="{% static 'blog/main.js' %}"></script>
+</body>
+</html>
