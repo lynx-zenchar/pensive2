@@ -1,11 +1,14 @@
 <!-- about.html -->
 {% extends "base.html" %}
+{% load static %}  <!-- Add this line -->
+
+
 
 {% block content %}
 <div class="center">
     <div class="card">
       <h2>About Me</h2>
-      <img src="images/mesoph.jpg" alt="Your Image Description" style="width:290px; height:290px; object-fit: cover;">
+      <img src="{% static 'blog/images/mesoph.jpg' %}" alt="Your Image Description" style="width:290px; height:290px; object-fit: cover;">
 
     <p>I am currently a Junior Computer Science Major at the University of Notre Dame.
         At ND, I currently live in Pangborn Hall but next semester I will be transferred, along with my dormmates to Graham Family Hall.

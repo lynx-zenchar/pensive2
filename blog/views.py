@@ -27,3 +27,7 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def categories(request):
+    # Logic for categories view
+    return render(request, 'categories.html')
